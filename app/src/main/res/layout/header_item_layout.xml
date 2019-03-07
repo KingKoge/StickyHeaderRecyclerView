@@ -5,7 +5,7 @@
                 android:background="#c0c0c0">
 
     <TextView
-            android:id="@+id/header"
+            android:id="@+id/tvHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -14,12 +14,12 @@
             android:textSize="18sp"/>
 
     <TextView
-            android:id="@+id/section"
+            android:id="@+id/tvSection"
             android:text="section"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/header"
+            android:layout_toEndOf="@+id/tvHeader"
             android:textColor="#ffffff"
             android:layout_marginStart="8dp"
             android:textSize="14dp"/>
