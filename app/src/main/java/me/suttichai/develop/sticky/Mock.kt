@@ -27,7 +27,7 @@ fun convertItemByHeaders(headers: MutableList<Header>): MutableList<Item<*>> {
         val itemHeader: Item<Header> = Item(header, HEADER_TYPE)
         items.add(itemHeader)
         for (body in header.bodies) {
-            val itemBody: Item<Body> = Item(body, ITEM_TYPE)
+            val itemBody: Item<Body> = Item(body, BODY_TYPE)
             items.add(itemBody)
         }
     }
