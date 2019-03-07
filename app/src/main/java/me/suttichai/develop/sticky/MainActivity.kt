@@ -19,5 +19,6 @@ class MainActivity : AppCompatActivity() {
         adapter.items = items
         rvItem.layoutManager = LinearLayoutManager(this)
         rvItem.adapter = adapter
+        rvItem.addItemDecoration(StickyHeaderHelper(adapter))
     }
 }
