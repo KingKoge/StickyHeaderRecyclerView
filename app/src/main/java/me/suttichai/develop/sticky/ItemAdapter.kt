@@ -1,12 +1,14 @@
 package me.suttichai.develop.sticky
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import me.suttichai.develop.sticky.model.Body
 import me.suttichai.develop.sticky.model.Header
 
-class ItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), StickyHeaderListener {
     var items: MutableList<Item<*>>? = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -46,5 +48,37 @@ class ItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         return items?.get(position)?.type ?: UNKNOWN_TYPE
+    }
+
+    override fun getPosition(position: Int): Int {
+        var itemPosition = position
+        var headerPosition = 0
+        do {
+            if (this.isHeader(itemPosition)) {
+                headerPosition = itemPosition
+                break
+            }
+            itemPosition -= 1
+        } while (itemPosition >= 0)
+        return headerPosition
+    }
+
+    override fun getLayout(): Int {
+        return R.layout.header_item_layout
+    }
+
+    override fun bind(header: View, position: Int) {
+        val tvHeader: TextView = header.findViewById(R.id.tvHeader)
+        val tvSection: TextView = header.findViewById(R.id.tvSection)
+        val item = getItem(position)?.data as? Header
+
+        if (item != null) {
+            tvHeader.text = item.title
+            tvSection.text = item.section
+        }
+    }
+
+    override fun isHeader(position: Int): Boolean {
+        return getItem(position)?.type == HEADER_TYPE
     }
 }
