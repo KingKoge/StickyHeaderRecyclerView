@@ -9,7 +9,7 @@ fun mock(): MutableList<Header> {
     var bodies: MutableList<Body>
     for (headerIndex in 1..3) {
         bodies = mutableListOf()
-        for (bodyIndex in 1..4) {
+        for (bodyIndex in 1..8) {
             val body = Body("Body: $headerIndex/$bodyIndex")
             bodies.add(body)
         }
