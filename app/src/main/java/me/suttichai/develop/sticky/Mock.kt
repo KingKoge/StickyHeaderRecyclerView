@@ -19,3 +19,18 @@ fun mock(): MutableList<Header> {
 
     return headers
 }
+
+fun convertItemByHeaders(headers: MutableList<Header>): MutableList<Item<*>> {
+    val items: MutableList<Item<*>> = mutableListOf()
+
+    for (header in headers) {
+        val itemHeader: Item<Header> = Item(header, HEADER_TYPE)
+        items.add(itemHeader)
+        for (body in header.bodies) {
+            val itemBody: Item<Body> = Item(body, ITEM_TYPE)
+            items.add(itemBody)
+        }
+    }
+
+    return items
+}
